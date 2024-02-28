@@ -12,7 +12,7 @@ public class User {
     private String emailId;
     private String password;
     private String otp;
-
+ //hii
     public User(String emailId, String password, String otp) {
         this.emailId = emailId;
         this.password = password;
