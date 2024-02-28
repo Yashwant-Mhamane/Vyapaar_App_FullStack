@@ -1,0 +1,112 @@
+<div class="fullForm1"   style="padding: 20px;" >
+  <mat-panel-title  class="example-headers-align" style="margin-bottom:10px; ">Create bill</mat-panel-title>
+<form [formGroup]="billForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field  appearance=fill>
+    <mat-label>customer Name</mat-label>
+    <input type="text" formControlName="customerName" name="customerName" matInput />
+
+    <mat-error *ngIf="billForm.controls['customerName'].hasError('required')">
+      <strong>customerName is required</strong>
+    </mat-error>
+    <mat-error *ngIf="billForm.controls['customerName'].hasError('minlength')">
+      <strong>customerName length should be 4 Char</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>customerPhoneNo</mat-label>
+    <input type="number" formControlName="customerPhoneNo" name="customerPhoneNo" matInput/>
+
+    <mat-error *ngIf="billForm.controls['customerPhoneNo'].hasError('required')">
+      <strong> customerPhoneNo is required</strong>
+    </mat-error>
+    <mat-error *ngIf="billForm.controls['customerPhoneNo'].hasError('pattern')">
+      <strong>  Phone Number Start with 6,7,8,9 must have 10 digits</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>customer EmailID</mat-label>
+    <input type="email" formControlName="customerEmailID" name="customerEmailID" matInput/>
+
+    <mat-error *ngIf="billForm.controls['customerEmailID'].hasError('required')">
+      <strong> customerEmailID is required</strong>
+    </mat-error>
+    <mat-error *ngIf="billForm.controls['customerEmailID'].hasError('pattern')">
+      <strong> Please Enter Valid Mail ID</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>customerAddress</mat-label>
+    <input type="text" formControlName="customerAddress" name="customerAddress" matInput/>
+
+    <mat-error *ngIf="billForm.controls['customerAddress'].hasError('required')">
+      <strong> customerAddress is required</strong>
+    </mat-error>
+    <mat-error *ngIf="billForm.controls['customerAddress'].hasError('minlength')">
+      <strong> customerAddress should be min 5 char</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>payMode</mat-label>
+    <input type="text" formControlName="payMode" name="payMode" matInput/>
+
+    <mat-error *ngIf="billForm.controls['payMode'].hasError('required')">
+      <strong> payMode is required</strong>
+    </mat-error>
+    <mat-error *ngIf="billForm.controls['payMode'].hasError('minlength')">
+      <strong> payMode should be min 3 number</strong>
+    </mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>totalBill </mat-label>
+    <input type="number" formControlName="totalBill" name="totalBill" matInput/>
+
+    <mat-error *ngIf="billForm.controls['totalBill'].hasError('required')">
+      <strong> totalBill is required</strong>
+    </mat-error>
+    <mat-error *ngIf="billForm.controls['totalBill'].hasError('min')">
+      <strong>totalBill should be greater than 0</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>discount</mat-label>
+    <input type="number" formControlName="discount" name="discount" matInput/>
+
+    <mat-error *ngIf="billForm.controls['discount'].hasError('required')">
+      <strong> discount is required</strong>
+    </mat-error>
+    <mat-error *ngIf="billForm.controls['discount'].hasError('min')">
+      <strong>discount should be positive</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <select formControlName="selectedProduct">
+    <option *ngFor="let product of productList" [value]="product.productId">{{ product.productName }}</option>
+  </select>
+  <label>Quantity</label>
+  <input type="number" formControlName="quantity">
+
+  <button type="button" (click)="addProductToBill()">Add Product</button>
+
+  <div formArrayName="purchasedProductList">
+    <div *ngFor="let productGroup of productListControl.controls; let i=index" [formGroupName]="i">
+      <label>Product Name: {{ productGroup.get('productName')?.value }}</label>
+      <label>Quantity: {{ productGroup.get('stock')?.value }}</label>
+      <label>Price</label>
+      <input type="number" formControlName="price">
+      <button type="button" (click)="removeProductFromBill(i)">Remove</button>
+    </div>
+  </div>
+  <div >
+    <button type="submit" [disabled]="billForm.invalid">Add Task</button>
+  </div>
+</form>
+
+</div>

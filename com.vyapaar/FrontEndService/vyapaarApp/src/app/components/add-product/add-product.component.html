@@ -1,0 +1,140 @@
+<div class="fullForm"   style="padding: 20px;" >
+  <mat-panel-title  class="example-headers-align" style="margin-bottom:10px; "> Add Product Details </mat-panel-title>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field  appearance=fill>
+    <mat-label>Product Name</mat-label>
+    <input type="text" formControlName="productName" name="productName" matInput />
+
+    <mat-error *ngIf="productForm.controls['productName'].hasError('required')">
+      <strong>productName is required</strong>
+    </mat-error>
+    <mat-error *ngIf="productForm.controls['productName'].hasError('minlength')">
+      <strong>productName length should be 4 Char</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Product Price</mat-label>
+    <input type="number" formControlName="productPrice" name="productPrice" matInput/>
+
+    <mat-error *ngIf="productForm.controls['productPrice'].hasError('required')">
+      <strong> Product price  is required</strong>
+    </mat-error>
+    <mat-error *ngIf="productForm.controls['productPrice'].hasError('min')">
+      <strong>Product price should be greater than 0</strong>
+    </mat-error>
+  </mat-form-field>
+    
+  <mat-form-field appearance="fill">
+    <mat-label>Stock Quantity</mat-label>
+    <input type="number" formControlName="stock" name="stock" matInput/>
+
+    <mat-error *ngIf="productForm.controls['stock'].hasError('required')">
+      <strong> Stock is required</strong>
+    </mat-error>
+    <mat-error *ngIf="productForm.controls['stock'].hasError('min')">
+      <strong> stock should be positive number</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>productCategory</mat-label>
+    <input type="text" formControlName="productCategory" name="productCategory" matInput/>
+
+    <mat-error *ngIf="productForm.controls['productCategory'].hasError('required')">
+      <strong> productCategory is required</strong>
+    </mat-error>
+    <mat-error *ngIf="productForm.controls['productCategory'].hasError('minlength')">
+      <strong> productCategory should be min 3 number</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>storageLocation</mat-label>
+    <input type="text" formControlName="storageLocation" name="storageLocation" matInput/>
+
+    <mat-error *ngIf="productForm.controls['storageLocation'].hasError('required')">
+      <strong> storageLocation is required</strong>
+    </mat-error>
+    <mat-error *ngIf="productForm.controls['storageLocation'].hasError('minlength')">
+      <strong> storageLocation should be min 3 number</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>batchNo</mat-label>
+    <input type="text" formControlName="batchNo" name="batchNo" matInput/>
+
+    <mat-error *ngIf="productForm.controls['batchNo'].hasError('required')">
+      <strong> batchNo is required</strong>
+    </mat-error>
+    <mat-error *ngIf="productForm.controls['batchNo'].hasError('minlength')">
+      <strong> batchNo should be min 3 number</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Product tax</mat-label>
+    <input type="number" formControlName="tax" name="tax" matInput/>
+
+    <mat-error *ngIf="productForm.controls['tax'].hasError('required')">
+      <strong> Product tax  is required</strong>
+    </mat-error>
+    <mat-error *ngIf="productForm.controls['tax'].hasError('min')">
+      <strong>Product tax should be greater than 0</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Product weight</mat-label>
+    <input type="number" formControlName="weight" name="weight" matInput/>
+
+    <mat-error *ngIf="productForm.controls['weight'].hasError('required')">
+      <strong> Product weight  is required</strong>
+    </mat-error>
+    <mat-error *ngIf="productForm.controls['weight'].hasError('min')">
+      <strong>Product weight should be greater than 0</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>color</mat-label>
+    <input type="text" formControlName="color" name="color" matInput/>
+
+    <mat-error *ngIf="productForm.controls['color'].hasError('required')">
+      <strong> color is required</strong>
+    </mat-error>
+    <mat-error *ngIf="productForm.controls['color'].hasError('minlength')">
+      <strong> color should be min 2 number</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <div appearance="fill" style="padding-bottom: 5%;">
+    <mat-label class="text1">expiryDate</mat-label>
+    <input type="date" class="date" placeholder="Enter Date From Today" formControlName="expiryDate" required
+      min="{{ todaydates }}" />
+    <mat-error *ngIf="
+        expiryDate?.invalid && (expiryDate.dirty || expiryDate.touched)
+      ">
+      <strong *ngIf="expiryDate?.errors?.['required']">This Date is Required
+      </strong>
+      <strong *ngIf="expiryDate?.errors?.['ErrorData1']">The Date Cannot be yesterday
+      </strong>
+    </mat-error>
+  </div>
+<!--
+  <div style="padding-bottom: 5%; padding-left: 10%;" >
+    <input id="input" (change)="onFileSelected($event)" type="file" formControlName="imgUrl" name="imgUrl"
+      class="text1" />
+    <p style="margin-left: 0px" class="text1">
+      Image size should be less than 100kb
+    </p>
+  </div> -->
+
+  <div >
+    <button type="submit" [disabled]="productForm.invalid">Add Task</button>
+  </div>
+</form>
+
+</div>
