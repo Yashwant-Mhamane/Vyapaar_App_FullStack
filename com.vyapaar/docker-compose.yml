@@ -1,0 +1,74 @@
+version: "3.9"
+networks:
+  tasknetwork:
+    driver: bridge
+services:
+  frontendservice:
+    build: FrontEndService/
+    image: frontendservice
+    depends_on:
+      - eurekaserverservice
+      - eurekaapigatewayservice
+    container_name: frontendservice
+  mysqlservices:
+    image: mysql
+    container_name: mysqlcontainervyapaar
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - tasknetwork
+  mongoservice:
+    image: mongo
+    container_name: mongocontainervyapaar
+    ports:
+      - 27018:27017
+    networks:
+      - tasknetwork
+
+  eurekaserverservice:
+    container_name: eurekaServer
+    build: EurekaServer/
+    networks:
+      - tasknetwork
+    ports:
+      - 8761:8761
+  eurekaapigatewayservice:
+    container_name: eurekaVyapaarGatewayClient
+    build: ApiGateway/
+    networks:
+      - tasknetwork
+    ports:
+      - 8083:8083
+    depends_on:
+      - eurekaserverservice
+    restart: always
+  userauthservice:
+    container_name: eurekaVyapaarAuthClient
+    build: UserService/
+    networks:
+      - tasknetwork
+    ports:
+      - 8081:8081
+    depends_on:
+      - eurekaserverservice
+      - eurekaapigatewayservice
+      - mysqlservices
+    restart: always
+  vyapaarservice:
+    container_name: eurekaVyapaarClient
+    build: vyapaarservice/
+    networks:
+      - tasknetwork
+    ports:
+      - 8082:8082
+    depends_on:
+      - eurekaserverservice
+      - eurekaapigatewayservice
+      - mongoservice
+      - userauthservice
+    restart: always
+
+
+

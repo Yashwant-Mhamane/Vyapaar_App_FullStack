@@ -1,0 +1,18 @@
+server:
+  port: 8082
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongocontainervyapaar:27017/vyapaarDataBase
+  application:
+    name: eurekaVyapaarClient
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eurekaserver:8761/eureka
