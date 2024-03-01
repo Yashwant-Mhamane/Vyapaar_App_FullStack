@@ -28,7 +28,7 @@ const routes: Routes = [
   {path:"forget" , component:ForgetPasswordComponent},
   {path:"searchbar",component:SearchBarComponent,canActivate:[LogInGuardGuard]},
   {path:"viewbill" , component:ViewBillComponent,canActivate:[LogInGuardGuard]},
-  {path:"viewproduct",component:ViewProductsComponent,canActivate:[LogInGuardGuard]},
+  {path:"viewproduct",component:ViewProductsComponent},
   {path:"**",component:PageNotFoundComponent},
 
 ];
