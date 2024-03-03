@@ -8,8 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
         <module name="UserService" />
-        <module name="ApiGateway" />
         <module name="FrontEndService" />
+        <module name="ApiGateway" />
         <module name="vyapaarservice" />
       </profile>
     </annotationProcessing>

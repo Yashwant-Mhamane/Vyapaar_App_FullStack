@@ -9,6 +9,7 @@ public class Product {
     private String productId;
     private String productName;
     private double productPrice;
+    private int purchasedQty;
     private int stock;
     private String productCategory;
     private boolean status;
@@ -19,15 +20,14 @@ public class Product {
     private double weight;
     private String color;
 
-
-
     public Product() {
     }
 
-    public Product(String productId, String productName, double productPrice, int stock, String productCategory, boolean status, String expiryDate, String storageLocation, String batchNo, double tax, double weight, String color) {
+    public Product(String productId, String productName, double productPrice,int purchasedQty, int stock, String productCategory, boolean status, String expiryDate, String storageLocation, String batchNo, double tax, double weight, String color) {
         this.productId = productId;
         this.productName = productName;
         this.productPrice = productPrice;
+        this.purchasedQty = purchasedQty;
         this.stock = stock;
         this.productCategory = productCategory;
         this.status = status;
@@ -63,6 +63,13 @@ public class Product {
         this.productPrice = productPrice;
     }
 
+    public int getPurchasedQty() {
+        return purchasedQty;
+    }
+
+    public void setPurchasedQty(int purchasedQty) {
+        this.purchasedQty = purchasedQty;
+    }
     public int getStock() {
         return stock;
     }
@@ -144,12 +151,12 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Double.compare(product.productPrice, productPrice) == 0 && stock == product.stock && status == product.status && Double.compare(product.tax, tax) == 0 && Double.compare(product.weight, weight) == 0 && Objects.equals(productId, product.productId) && Objects.equals(productName, product.productName) && Objects.equals(productCategory, product.productCategory) && Objects.equals(expiryDate, product.expiryDate) && Objects.equals(storageLocation, product.storageLocation) && Objects.equals(batchNo, product.batchNo) && Objects.equals(color, product.color);
+        return Double.compare(product.productPrice, productPrice) == 0 && purchasedQty == product.purchasedQty && stock == product.stock && status == product.status && Double.compare(product.tax, tax) == 0 && Double.compare(product.weight, weight) == 0 && Objects.equals(productId, product.productId) && Objects.equals(productName, product.productName) && Objects.equals(productCategory, product.productCategory) && Objects.equals(expiryDate, product.expiryDate) && Objects.equals(storageLocation, product.storageLocation) && Objects.equals(batchNo, product.batchNo) && Objects.equals(color, product.color);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, productName, productPrice, stock, productCategory, status, expiryDate, storageLocation, batchNo, tax, weight, color);
+        return Objects.hash(productId, productName, productPrice, purchasedQty, stock, productCategory, status, expiryDate, storageLocation, batchNo, tax, weight, color);
     }
 
     @Override
@@ -158,6 +165,7 @@ public class Product {
                 "productId='" + productId + '\'' +
                 ", productName='" + productName + '\'' +
                 ", productPrice=" + productPrice +
+                ", purchasedQty=" + purchasedQty +
                 ", stock=" + stock +
                 ", productCategory='" + productCategory + '\'' +
                 ", status=" + status +
@@ -169,6 +177,4 @@ public class Product {
                 ", color='" + color + '\'' +
                 '}';
     }
-
-
 }
