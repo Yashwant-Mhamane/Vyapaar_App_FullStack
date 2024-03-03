@@ -143,4 +143,12 @@ public class Bill {
                 ", purchasedProductList=" + purchasedProductList +
                 '}';
     }
+
+    public double totalBill() {
+        double totalBill = 0.0;
+        for (Product product : purchasedProductList) {
+            totalBill += product.getProductPrice() * product.getPurchasedQty();
+        }
+        return totalBill;
+    }
 }
