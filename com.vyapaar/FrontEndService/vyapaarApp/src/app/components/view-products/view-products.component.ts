@@ -11,6 +11,7 @@ import { PRODUCT } from 'src/model/product';
 })
 export class ViewProductsComponent implements OnInit {
 
+  panelOpenState = false;
 
   allProduct:PRODUCT[]=[];
 constructor(private product:VyapaarServiceService, private service:UserServiceService, private router:Router){}
