@@ -8,10 +8,8 @@
 .products {
   width: 50%;
   padding: 10%;
-  border: 1px solid black;
 }
 .fullForm {
-  border: 4px solid greenyellow;
   background-color: rgb(86, 49, 120);
   padding: 5%;
 }
