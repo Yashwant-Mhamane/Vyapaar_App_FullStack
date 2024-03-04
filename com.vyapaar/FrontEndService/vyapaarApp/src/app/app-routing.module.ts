@@ -20,15 +20,15 @@ const routes: Routes = [
   {path: "", redirectTo: 'login', pathMatch:'full'},
   {path:"register",component:RegisterComponent},
   {path:"pgn" , component:PageNotFoundComponent},
-  {path:"home",component:HomeComponent,canActivate:[LogInGuardGuard]},
-  {path:"header",component:HeaderComponent,canActivate:[LogInGuardGuard]},
-  {path:"editproduct",component:EditProductComponent,canActivate:[LogInGuardGuard]},
-  {path:"addproduct" , component:AddProductComponent,canActivate:[LogInGuardGuard]},
-  {path:"createbill",component:CreateBillComponent,canActivate:[LogInGuardGuard]},
+  {path:"home",component:HomeComponent},// removed gaurd
+  {path:"header",component:HeaderComponent},// removed gaurd
+  {path:"editproduct",component:EditProductComponent},// removed gaurd
+  {path:"addproduct" , component:AddProductComponent},// removed gaurd
+  {path:"createbill",component:CreateBillComponent},//removed gaurd
   {path:"forget" , component:ForgetPasswordComponent},
-  {path:"searchbar",component:SearchBarComponent,canActivate:[LogInGuardGuard]},
-  {path:"viewbill" , component:ViewBillComponent,canActivate:[LogInGuardGuard]},
-  {path:"viewproduct",component:ViewProductsComponent},
+  {path:"searchbar",component:SearchBarComponent},// removed gaurd
+  {path:"viewbill" , component:ViewBillComponent}, // removed gaurd
+  {path:"viewproduct",component:ViewProductsComponent}, // removed gaurd
   {path:"**",component:PageNotFoundComponent},
 
 ];

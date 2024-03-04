@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/com.vyapaar/ApiGateway/ApiGateway.iml" filepath="$PROJECT_DIR$/com.vyapaar/ApiGateway/ApiGateway.iml" />
-      <module fileurl="file://$PROJECT_DIR$/com.vyapaar/EurekaServer/EurekaServer.iml" filepath="$PROJECT_DIR$/com.vyapaar/EurekaServer/EurekaServer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/com.vyapaar/FrontEndService/FrontEndService.iml" filepath="$PROJECT_DIR$/com.vyapaar/FrontEndService/FrontEndService.iml" />
-      <module fileurl="file://$PROJECT_DIR$/com.vyapaar/UserService/UserService.iml" filepath="$PROJECT_DIR$/com.vyapaar/UserService/UserService.iml" />
-      <module fileurl="file://$PROJECT_DIR$/com.vyapaar/com.vyapaar.iml" filepath="$PROJECT_DIR$/com.vyapaar/com.vyapaar.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/vyapaar.iml" filepath="$PROJECT_DIR$/.idea/vyapaar.iml" />
-      <module fileurl="file://$PROJECT_DIR$/com.vyapaar/vyapaarservice/vyapaarservice.iml" filepath="$PROJECT_DIR$/com.vyapaar/vyapaarservice/vyapaarservice.iml" />
     </modules>
   </component>
 </project>

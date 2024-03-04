@@ -1,71 +1,49 @@
-.material-icons {
-  cursor: pointer;
-}
-
-.material-icons:hover {
-  border-radius: 10px;
-}
-
-.example-action-buttons {
-  padding-bottom: 20px;
-}
-
-.example-headers-align .mat-expansion-panel-header-description {
-  justify-content: space-between;
+.main-div{
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.example-headers-align .mat-mdc-form-field+.mat-mdc-form-field {
-  margin-left: 20px;
+/* to set the entire div in center */
+.products {
+  width: 50%;
+  padding: 10%;
+  border: 1px solid black;
 }
-
-
-mat-form-field {
-  margin-left: 10px;
-
-  max-width: 50%;
-}
-
-textarea {
-  margin-bottom: -27px;
-}
-
-.date {
-  height: 50px;
-  margin-left: 60px;
-  padding: 10px;
-  border: 0px;
-}
-
-.date:hover {
-  border: 2px solid black;
-  cursor: pointer;
-  border-radius: 10px;
-  transition: 5s;
-
-}
-
 .fullForm {
-  /* background-image: url(../../../assets/wood-.jpg);
-  background-size: cover; */
+  border: 4px solid greenyellow;
   background-color: rgb(86, 49, 120);
-
-margin-top: 10%;
+  padding: 5%;
 }
-
+.row{
+  display: flex;
+  align-items: center;
+  column-gap: 12vh;
+}
+mat-form-field{
+  width: 100%;
+}
 mat-panel-title {
   color: white;
-  font-size: 20px;
-  margin-left: 27%;
+  font-size: 25px;
   font-weight: 500;
-  margin-bottom: 20px;
 }
-
 .text1 {
   font-size: 17px;
   color: white;
 }
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
 
-button{
-  margin-left: 37%;
+}
+.button-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-product-title-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
