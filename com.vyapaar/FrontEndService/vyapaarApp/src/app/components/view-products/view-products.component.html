@@ -1,27 +1,25 @@
-<!-- <div class="container">
-<div class="box" *ngFor="let card of allProduct">
-  <mat-card-header>Name : {{card.productName}}</mat-card-header>
-  <mat-card-title>Price: {{card.productPrice}}</mat-card-title>
-</div>
-</div> -->
-<!-- Expansion panel -->
-<div class="continer">
-  <div class="main-div">
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            chai patti
-          </mat-panel-title>
-          <mat-panel-description>
-            In-stock : 2
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <p>I'm visible because I am open</p>
-        <p>Add more Data here</p>
-        <p>More porducts details available here</p>
-      </mat-expansion-panel>
-    </mat-accordion>
+<div *ngFor="let card of allProduct">
+  <div class="continer">
+    <div class="main-div">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{card.productName}}
+            </mat-panel-title>
+            <mat-panel-description>
+              Stock-in : {{card.stock}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>{{card.expiryDate}}?</p>
+          <p>Add more Data here</p>
+          <p>More porducts details available here</p>
+        </mat-expansion-panel>
+      </mat-accordion>
 
+    </div>
   </div>
+
 </div>
+
+<!-- Expansion panel -->
