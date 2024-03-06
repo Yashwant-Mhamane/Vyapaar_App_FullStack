@@ -3,13 +3,6 @@ networks:
   tasknetwork:
     driver: bridge
 services:
-  frontendservice:
-    build: FrontEndService/
-    image: frontendservice
-    depends_on:
-      - eurekaserverservice
-      - eurekaapigatewayservice
-    container_name: frontendservice
   mysqlservices:
     image: mysql
     container_name: mysqlcontainervyapaar

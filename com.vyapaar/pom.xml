@@ -22,7 +22,6 @@
 	<module>vyapaarservice</module>
 	<module>ApiGateway</module>
 	<module>EurekaServer</module>
-	<module>FrontEndService</module>
 </modules>
 	<dependencies>
 		<dependency>
