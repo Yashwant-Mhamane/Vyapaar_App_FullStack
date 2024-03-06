@@ -29,18 +29,17 @@ export class UserServiceService {
   }
 
   // set the below variable to false after developing UI
-  isLoggedinUser: boolean = true;
+  isLoggedinUser: boolean = false;
   public isLoggedin() {
-    // remove the below line
-    return true
-    // let webToken = localStorage.getItem("tokenGenerated");
-    // if(webToken=="" || webToken==undefined || webToken==null)
-    // { this.isLoggedinUser=false;
-    //   return false;
-    // }else
-    // {this.isLoggedinUser=true;
-    //   return true;
-    // }
+
+    let webToken = localStorage.getItem("tokenGenerated");
+    if(webToken=="" || webToken==undefined || webToken==null)
+    { this.isLoggedinUser=false;
+      return false;
+    }else
+    {this.isLoggedinUser=true;
+      return true;
+    }
   }
   public logOutUser() {
     localStorage.clear();

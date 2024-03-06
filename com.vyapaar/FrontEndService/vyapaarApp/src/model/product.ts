@@ -1,5 +1,6 @@
 export type PRODUCT =
 {
+name: any;
   productId:string;
   productName?:string;
   productPrice?:number;
