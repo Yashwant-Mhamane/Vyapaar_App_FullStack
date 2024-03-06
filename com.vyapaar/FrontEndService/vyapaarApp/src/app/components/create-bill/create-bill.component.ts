@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { Router } from '@angular/router';
+
 import { VyapaarServiceService } from 'src/app/service/vyapaar-service.service';
 import { PRODUCT } from 'src/model/product';
 
@@ -16,6 +17,7 @@ export class CreateBillComponent {
   url: string = '../../../assets/default.jpg';
   todaydates: string = formatDate(new Date(), 'yyyy-MM-dd', 'en-in');
   productList : PRODUCT[]=[];
+ total : number=0;
   constructor(
     private fb: FormBuilder,
     private ms: VyapaarServiceService,
@@ -32,10 +34,11 @@ export class CreateBillComponent {
     customerEmailID: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z.-]+\\.[a-z]{2,4}$')]],
     customerAddress: ['', [Validators.required, Validators.minLength(4)]],
     payMode: ['', [Validators.required, Validators.minLength(3)]],
-    totalBill: ['', [Validators.required,Validators.min(0)]],
+    // totalBill:[0], taking from backend.
     discount: ['', [Validators.required,Validators.min(0)]],
     billDate: [this.todaydates],
-    selectedProduct: [''], // for selecting products to add to the bill
+    selectedProduct: [''],
+    selectedProductQuantity:[''], // for selecting products to add to the bill
     purchasedProductList: this.fb.array([])
   });
 
@@ -48,12 +51,17 @@ export class CreateBillComponent {
     return this.billForm.get('purchasedProductList') as FormArray;
   }
 
+  get purchasedQty():number{
+    return this.billForm.get('selectedProductQuantity').value;
+  }
+
   addProductToBill(): void {
     const selectedProduct = this.productList.find(product => product.productId === this.selectedProductId);
+
     if (selectedProduct) {
       this.productListControl.push(this.fb.group({
         productName: selectedProduct.productName,
-        stock: [, Validators.required], // default quantity
+        purchasedQty: this.purchasedQty, // default quantity
         productPrice: [selectedProduct.productPrice, Validators.required]
       }));
     }
@@ -62,7 +70,6 @@ export class CreateBillComponent {
   removeProductFromBill(index: number): void {
     this.productListControl.removeAt(index);
   }
-
 
   ngOnInit() {
     this.ms.getAllBill();
@@ -81,8 +88,6 @@ export class CreateBillComponent {
     }
     const filedata = file.target.files[0];
   }
-
-
 
   var1: string = '';
   customerName1: any;
@@ -110,7 +115,7 @@ export class CreateBillComponent {
     // this.productForm.value.imgUrl = this.url;
     this.ms.createBill(this.billForm.value).subscribe(
       (data) => {
-        console.log(data);
+       // console.log(data);
         this.router1.navigateByUrl('header');
         alert('Bill Created successfully');
         location.reload();

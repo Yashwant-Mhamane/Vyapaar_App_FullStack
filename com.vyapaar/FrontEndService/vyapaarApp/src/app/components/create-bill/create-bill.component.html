@@ -62,19 +62,6 @@
     </mat-error>
   </mat-form-field>
 
-
-  <mat-form-field appearance="fill">
-    <mat-label>totalBill </mat-label>
-    <input type="number" formControlName="totalBill" name="totalBill" matInput/>
-
-    <mat-error *ngIf="billForm.controls['totalBill'].hasError('required')">
-      <strong> totalBill is required</strong>
-    </mat-error>
-    <mat-error *ngIf="billForm.controls['totalBill'].hasError('min')">
-      <strong>totalBill should be greater than 0</strong>
-    </mat-error>
-  </mat-form-field>
-
   <mat-form-field appearance="fill">
     <mat-label>discount</mat-label>
     <input type="number" formControlName="discount" name="discount" matInput/>
@@ -90,17 +77,15 @@
   <select formControlName="selectedProduct">
     <option *ngFor="let product of productList" [value]="product.productId">{{ product.productName }}</option>
   </select>
-  <label>Quantity</label>
-  <input type="number" formControlName="quantity">
 
+  <label>Quantity</label>
+  <input type="number"  formControlName="selectedProductQuantity">
   <button type="button" (click)="addProductToBill()">Add Product</button>
 
   <div formArrayName="purchasedProductList">
     <div *ngFor="let productGroup of productListControl.controls; let i=index" [formGroupName]="i">
       <label>Product Name: {{ productGroup.get('productName')?.value }}</label>
-      <label>Quantity: {{ productGroup.get('stock')?.value }}</label>
-      <label>Price</label>
-      <input type="number" formControlName="price">
+      <label>Price : {{ productGroup.get('productPrice')?.value }}</label>
       <button type="button" (click)="removeProductFromBill(i)">Remove</button>
     </div>
   </div>
@@ -108,5 +93,4 @@
     <button type="submit" [disabled]="billForm.invalid">Add Task</button>
   </div>
 </form>
-
 </div>

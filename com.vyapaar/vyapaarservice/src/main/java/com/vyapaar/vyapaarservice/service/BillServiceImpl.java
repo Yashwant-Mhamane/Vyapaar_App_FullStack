@@ -474,16 +474,27 @@ public class BillServiceImpl implements BillService {
             user = billRepository.findById(emailId).get();
             List<Bill> billList = user.getBillList();
             if (billList == null) {
+                double total = 0.0;
+                List<Product> bill1PurchasedProductList = bill.getPurchasedProductList();
+                for (Product product:bill1PurchasedProductList) {
+                    total += product.getProductPrice()* product.getPurchasedQty();
+                }
+                bill.setTotalBill(total);
                 billList = Collections.singletonList(bill);
             } else {
                 if (billList.stream().filter(data -> data.getBillId().equals(bill.getBillId())).findAny().isPresent()) {
                     throw new BillAlreadyExistException("Bill Already Exist");
                 } else {
+                    double total = 0.0;
+                    List<Product> bill1PurchasedProductList = bill.getPurchasedProductList();
+                    for (Product product:bill1PurchasedProductList) {
+                        total += product.getProductPrice()* product.getPurchasedQty();
+                    }
+                    bill.setTotalBill(total);
                     billList.add(bill);
                 }
             }
             user.setBillList(billList);
-
         } else {
             throw new UserNotFoundException("User Not Found Exception");
         }
