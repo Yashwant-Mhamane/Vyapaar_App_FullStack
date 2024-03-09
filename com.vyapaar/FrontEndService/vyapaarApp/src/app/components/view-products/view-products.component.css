@@ -1,7 +1,13 @@
-.continer{
-  margin: 7% 2% 0% 2%;
+.product-card{
+  /* border : 1px solid green; */
+  margin-top:  15vh;
+  margin-left: 5vh;
+  margin-right: 5vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 .main-div{
-  max-width: fit-content;
-}
+  margin: 20px;
+  max-width: 100vh;
 
+}
