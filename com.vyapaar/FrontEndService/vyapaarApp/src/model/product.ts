@@ -4,6 +4,7 @@ name: any;
   productId:string;
   productName?:string;
   productPrice?:number;
+  purchasedQty:number;
   stock?:number;
   productCategory?:string;
   expiryDate:Date;
