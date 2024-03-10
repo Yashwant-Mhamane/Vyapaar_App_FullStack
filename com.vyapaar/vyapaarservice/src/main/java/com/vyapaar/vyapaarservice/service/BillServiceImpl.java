@@ -45,11 +45,15 @@ public class BillServiceImpl implements BillService {
             user = billRepository.findById(emailId).get();
             List<Product> productList = user.getProductList();
             if (productList == null) {
+                double productPrice1=product.getProductPrice()+(product.getProductPrice()*product.getTax()/100);
+                product.setProductPrice(productPrice1);
                 productList = Collections.singletonList(product);
             } else {
                 if (productList.stream().filter(data -> data.getProductName().equalsIgnoreCase(product.getProductName())).findAny().isPresent()) {
                     throw new ProductAlreadyExistException("Product Already Exist");
                 } else {
+                    double productPrice1=product.getProductPrice()+(product.getProductPrice()*product.getTax()/100);
+                    product.setProductPrice(productPrice1);
                     productList.add(product);
                 }
             }
@@ -479,7 +483,7 @@ public class BillServiceImpl implements BillService {
                 for (Product product:bill1PurchasedProductList) {
                     total += product.getProductPrice()* product.getPurchasedQty();
                 }
-                bill.setTotalBill(total);
+                bill.setTotalBill(total-(total*bill.getDiscount()/100));
                 billList = Collections.singletonList(bill);
             } else {
                 if (billList.stream().filter(data -> data.getBillId().equals(bill.getBillId())).findAny().isPresent()) {
@@ -490,7 +494,7 @@ public class BillServiceImpl implements BillService {
                     for (Product product:bill1PurchasedProductList) {
                         total += product.getProductPrice()* product.getPurchasedQty();
                     }
-                    bill.setTotalBill(total);
+                    bill.setTotalBill(total-(total*bill.getDiscount()/100));
                     billList.add(bill);
                 }
             }
