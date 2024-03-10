@@ -20,7 +20,6 @@ public class Product {
     private String expiryDate;
     private String storageLocation;
     private String batchNo;
-    private String[] productCategoryList;
     private double tax;
     private double weight;
     private String color;
