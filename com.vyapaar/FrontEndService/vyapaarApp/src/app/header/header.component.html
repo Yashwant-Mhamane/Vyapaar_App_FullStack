@@ -1,18 +1,11 @@
 <div class="addbill">
   <button class="add" mat-raised-button color="primary" (click)="openDialog()">Create New Bill</button>
-<app-search-bar class="ser" (sendToContainer)="searched($event)"
-(sendToContainer1)="filtered($event)"
-
-></app-search-bar>
-<!-- <div *ngIf="showDeleteButton1">
-  <button class="del" mat-raised-button color="primary" (click)="deleteAllTask()">
-    Delete All
-  </button>
-</div> -->
-<button class="add" mat-raised-button color="primary" (click)="openDialog1()">Add New Product</button>
+  <app-search-bar class="ser" (sendToContainer)="searched($event)"
+    (sendToContainer1)="filtered($event)"></app-search-bar>
+  <button class="add" mat-raised-button color="primary" (click)="openDialog1()">Add New Product</button>
 </div>
 
-<app-view-bill [allBill]="allBill" ></app-view-bill>
+<app-view-bill [allBill]="allBill"></app-view-bill>
 <div *ngIf="showMessage">
   <h1>You have No Tasks</h1>
 </div>

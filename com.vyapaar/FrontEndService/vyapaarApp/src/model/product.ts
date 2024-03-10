@@ -6,7 +6,7 @@ name: any;
   productPrice?:number;
   stock?:number;
   productCategory?:string;
-  expiryDate?:string;
+  expiryDate:Date;
   storageLocation?:string;
   batchNo?:string;
   tax?:number;
