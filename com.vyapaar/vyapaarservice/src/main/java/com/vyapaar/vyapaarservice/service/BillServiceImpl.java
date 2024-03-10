@@ -104,7 +104,7 @@ public class BillServiceImpl implements BillService {
                 throw new ProductNotFoundException("Product Not Found.");
             } else {
                 List<Product> productList= user.getProductList();
-                return productList.stream().filter(fun -> fun.getStatus() == (status)&& fun.getStatus()==false).toList();
+                return productList.stream().filter(fun -> fun.getStatus() == (status)&& !fun.getStatus()).toList();
             }
         } else {
             throw new UserNotFoundException("User Not Found.");
