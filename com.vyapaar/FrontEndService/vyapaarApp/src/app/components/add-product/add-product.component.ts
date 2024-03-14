@@ -1,9 +1,16 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { MatDialog, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 import { VyapaarServiceService } from 'src/app/service/vyapaar-service.service';
+import { USER } from 'src/model/user';
+
+interface Food {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-add-product',
@@ -19,7 +26,8 @@ export class AddProductComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private ms: VyapaarServiceService,
-    private router1: Router
+    private router1: Router,
+    public dialog: MatDialog
   ) {
     ms.getAllProduct();
   }
@@ -29,21 +37,41 @@ export class AddProductComponent implements OnInit {
   productForm: any = this.fb.group({
     productName: ['', [Validators.required, Validators.minLength(4)]],
     productPrice: ['', [Validators.required, Validators.min(0)]],
-    stock: ['', [Validators.required,Validators.min(0)]],
+    stock: ['', [Validators.required, Validators.min(0)]],
     productCategory: ['', [Validators.required, Validators.minLength(3)]],
     storageLocation: ['', [Validators.required, Validators.minLength(2)]],
     batchNo: ['', [Validators.required, Validators.minLength(2)]],
-    tax: ['', [Validators.required,Validators.min(0)]],
-    weight: ['', [Validators.required,Validators.min(0)]],
+    tax: ['', [Validators.required, Validators.min(0)]],
+    weight: ['', [Validators.required, Validators.min(0)]],
     color: ['', [Validators.required, Validators.minLength(2)]],
     createdDateTime: [this.todaydates],
     expiryDate: ['', [Validators.required, this.getdataValidate]],
     status: [false],
     updatedTask: [''],
+    selectedValue: [
+    ]
   });
+
+
+  productCategeoryList:string[] = []
+
+
+  productCat() {
+    console.log(this.productForm.selectedValue);
+  }
+
+  getProductCategoryList() {
+    this.ms.getProductCategoryList().subscribe((data)=>{
+      this.productCategeoryList.push(...data);
+    });
+
+    this.productCategeoryList;
+  }
 
   ngOnInit() {
     this.ms.getAllProduct();
+    this.getProductCategoryList();
+    console.log(this.productCategeoryList);
   }
 
   onFileSelected(file: any) {
@@ -59,6 +87,10 @@ export class AddProductComponent implements OnInit {
 
   get expiryDate() {
     return this.productForm.controls.expiryDate;
+  }
+
+  addProductCategory() {
+
   }
 
   getdataValidate(ac: AbstractControl) {
@@ -83,12 +115,10 @@ export class AddProductComponent implements OnInit {
   minutes: number = this.now.getMinutes();
   seconds: number = this.now.getSeconds();
 
-  formattedDate: string = `${this.year}-${
-    this.month < 10 ? '0' + this.month : this.month
-  }-${this.date < 10 ? '0' + this.date : this.date}`;
-  formattedTime: string = `${this.hours < 10 ? '0' + this.hours : this.hours}:${
-    this.minutes < 10 ? '0' + this.minutes : this.minutes
-  }:${this.seconds < 10 ? '0' + this.seconds : this.seconds}`;
+  formattedDate: string = `${this.year}-${this.month < 10 ? '0' + this.month : this.month
+    }-${this.date < 10 ? '0' + this.date : this.date}`;
+  formattedTime: string = `${this.hours < 10 ? '0' + this.hours : this.hours}:${this.minutes < 10 ? '0' + this.minutes : this.minutes
+    }:${this.seconds < 10 ? '0' + this.seconds : this.seconds}`;
 
   dateTime: string = this.formattedDate.concat(' Time - ', this.formattedTime);
   onSubmit() {
@@ -98,11 +128,13 @@ export class AddProductComponent implements OnInit {
     this.productForm.value.productName = this.productName1;
     // this.productForm.value.imgUrl = this.url;
     this.ms.addProduct(this.productForm.value).subscribe(
+
       (data) => {
         console.log(data);
         this.router1.navigateByUrl('header');
         alert('Product added successfully');
         location.reload();
+
       },
       (error) => {
         alert('This Product already exists');
@@ -110,4 +142,6 @@ export class AddProductComponent implements OnInit {
       }
     );
   }
+
+
 }
