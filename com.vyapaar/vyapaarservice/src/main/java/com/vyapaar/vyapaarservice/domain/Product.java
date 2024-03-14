@@ -1,11 +1,10 @@
 package com.vyapaar.vyapaarservice.domain;
 
 import lombok.*;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import java.util.Map;
-import java.util.Objects;
+import java.util.List;
+
 
 @Data
 public class Product {

@@ -71,6 +71,16 @@ public class BillController {
             return new ResponseEntity<>("Product Not Found", HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/user/getProductCategoryList")
+    public ResponseEntity<?> getProductCategoryList(HttpServletRequest httpServletRequest){
+        String emailId = httpServletRequest.getAttribute("emailId").toString();
+        try {
+            List<String> productCategoryList = billService.getProductCategoryList(emailId);
+            return new ResponseEntity<>(productCategoryList ,HttpStatus.OK);
+        } catch (UserNotFoundException | ProductNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
     @GetMapping("/user/getproductbystatus/{status}")
     public ResponseEntity<?> getProductByStatus(HttpServletRequest httpServletRequest, @PathVariable boolean status) {
 

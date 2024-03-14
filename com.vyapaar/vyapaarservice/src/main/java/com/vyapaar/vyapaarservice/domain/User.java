@@ -21,6 +21,7 @@ public class User {
     private String gstNo;
     private String shopAddress;
     private List<Product> productList;
+    private List<String> productCategoryList;
     private List<Bill> billList;
 
 }
