@@ -60,7 +60,6 @@ public class BillController {
     }
     @GetMapping("/user/getproductbycategory/{productCategory}")
     public ResponseEntity<?> getProductByCategory(HttpServletRequest httpServletRequest, @PathVariable String productCategory) {
-
         String emailId = httpServletRequest.getAttribute("emailId").toString();
         try {
             List<Product> userProductList = billService.getProductByCategory(emailId, productCategory);
