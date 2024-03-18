@@ -22,17 +22,13 @@
   padding-left: 15px;
 }
 
-
 textarea {
   padding: 0 20px;
 }
 .desc {
-  margin-right: 5px;
   font-size: 17px;
   min-width: 320px;
-  margin-bottom: 20px;
   font-family: "Roboto Slab", serif;
-
 }
 p{
   color:black;
@@ -74,3 +70,12 @@ margin-left: 40%;
   font-weight: 300px;
 }
 
+.heading{
+color:blue;
+text-align: left;
+}
+.footer
+{
+  color:blue;
+text-align: end;
+}

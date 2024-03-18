@@ -4,6 +4,7 @@ import { UserServiceService } from 'src/app/service/user-service.service';
 import { VyapaarServiceService } from 'src/app/service/vyapaar-service.service';
 import { BILL } from 'src/model/bill';
 
+
 @Component({
   selector: 'app-view-bill',
   templateUrl: './view-bill.component.html',
@@ -14,18 +15,18 @@ export class ViewBillComponent implements OnInit {
   ngOnInit(): void {
 
 this.getAllBill();
+
   }
 
   page: number = 1;
   count: number = 0;
-  cardSize: number = 6;
-  cardSizes: any = [6,3,9];
+  cardSize: number = 4;
+  cardSizes: any = [4,2,6];
 
   @Input()
   allBill: BILL[] = [];
 
   constructor(private h: VyapaarServiceService, private service: UserServiceService, private router: Router) { }
-
 
   logout() {
     this.service.logOutUser();

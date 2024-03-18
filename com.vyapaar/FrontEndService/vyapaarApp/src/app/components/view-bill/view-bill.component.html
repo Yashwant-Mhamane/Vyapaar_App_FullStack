@@ -1,25 +1,43 @@
 
-
 <div class="div">
-
   <mat-card class="example-card" *ngFor="
       let card of allBill.reverse()">
     <mat-card-header class="head">
       <mat-card-title class="text"> {{ card.billId }}</mat-card-title>
       <mat-card-subtitle class="text text1">
-        Date :-{{ card.billDate }} | Name :- {{ card.customerName }}</mat-card-subtitle>
+        Date :- {{ card.billDate }} | Name :- {{ card.customerName }}</mat-card-subtitle>
     </mat-card-header>
         <mat-card-content class="desc">
-          {{ card.customerAddress }}
-          {{ card.customerEmailID }} {{card.customerPhoneNo}}
+         Address : {{ card.customerAddress }}
+         CustomerMail: {{ card.customerEmailID }} {{card.customerPhoneNo}}
         </mat-card-content>
         <mat-card-content class="desc">
-         {{card.totalBill}} | {{card.payMode}}
+        Total Bill : {{card.totalBill}} | Payment Mode : {{card.payMode}}
         </mat-card-content>
-        <div *ngFor="let product of card.purchasedProductList">
-          <p>{{ product.productName }} - Quantity: {{product.purchasedQty}} - Price: {{ product.productPrice }}</p>
-          <!-- Add more product details as needed -->
+        <table>
+          <thead>
+            <tr class="heading">
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of card.purchasedProductList">
+              <td>{{ product.productName }}</td>
+              <td>{{ product.purchasedQty }}</td>
+              <td>{{ product.productPrice }}</td>
+            </tr>
+          </tbody>
+          <div>
+          <tr>
+          <td> Discount : {{card.discount}} % </td>
+        </tr>
+          <tr>
+          <td> Total Bill : {{card.totalBill}} </td>
+          </tr>
         </div>
+        </table>
   </mat-card>
 </div>
 <!-- <div  class="size1" id="pg">
@@ -28,7 +46,7 @@
     </pagination-controls>
   </div>
   <div class="size1">
-    <a>Tasks per page :- </a>
+    <a>Bills per page :- </a>
     <select (change)="onCardSizeChange($event)">
       <option *ngFor="let size of cardSizes">
         {{ size }}
@@ -36,3 +54,4 @@
     </select>
   </div>
 </div> -->
+
