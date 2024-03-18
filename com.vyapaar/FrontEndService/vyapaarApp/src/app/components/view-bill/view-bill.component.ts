@@ -20,8 +20,8 @@ this.getAllBill();
 
   page: number = 1;
   count: number = 0;
-  cardSize: number = 4;
-  cardSizes: any = [4,2,6];
+  cardSize: number = 6;
+  cardSizes: any = [6,3,9];
 
   @Input()
   allBill: BILL[] = [];

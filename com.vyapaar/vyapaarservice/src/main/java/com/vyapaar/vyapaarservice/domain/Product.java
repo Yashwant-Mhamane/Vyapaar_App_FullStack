@@ -177,5 +177,4 @@ public class Product {
                 ", color='" + color + '\'' +
                 '}';
     }
-
 }
