@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog
   ) { }
-  ngOnInit(): void {
+  ngOnInit(): void {  
     this.getAllBill();
   }
 

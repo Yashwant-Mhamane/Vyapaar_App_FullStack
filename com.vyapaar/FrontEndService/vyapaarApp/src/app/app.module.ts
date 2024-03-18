@@ -33,12 +33,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
-
 import { HomeComponent } from './components/home/home.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HeaderComponent } from './header/header.component';
-
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -75,10 +74,11 @@ import { HeaderComponent } from './header/header.component';
     MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMenuModule,FormsModule,MatSnackBarModule,MatTooltipModule,MatBadgeModule,
+    MatMenuModule,FormsModule,MatSnackBarModule,MatTooltipModule,MatBadgeModule,MatPaginatorModule,
     MatDialogModule,
     MatPaginatorModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatTableModule
 
   ],
   providers: [],
