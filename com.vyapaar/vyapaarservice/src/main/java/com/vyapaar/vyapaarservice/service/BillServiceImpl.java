@@ -10,9 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+
 @Service
 public class BillServiceImpl implements BillService {
 
@@ -108,7 +107,7 @@ public class BillServiceImpl implements BillService {
                 throw new ProductNotFoundException("Product Not Found.");
             } else {
                 List<Product> productList= user.getProductList();
-                return productList.stream().filter(fun -> fun.getStatus() == (status)&& fun.getStatus()==false).toList();
+                return productList.stream().filter(fun -> fun.getStatus() == (status)&& !fun.getStatus()).toList();
             }
         } else {
             throw new UserNotFoundException("User Not Found.");
@@ -204,6 +203,23 @@ public class BillServiceImpl implements BillService {
             throw new UserNotFoundException("User Not Found.");
         }
     }
+
+    @Override
+    public List<String> getProductCategoryList(String emailId) throws UserNotFoundException {
+        Optional<User> user = billRepository.findById(emailId);
+        if (user.isPresent()) {
+            User existingUser = user.get();
+            List<String> productCategoryList = existingUser.getProductCategoryList();
+            if (productCategoryList ==null){
+                return null;
+            }else {
+                return productCategoryList;
+            }
+        }else {
+            throw new UserNotFoundException("User does not exists");
+        }
+    }
+
     @Override
     public User deleteAllProduct(String emailId) throws ProductNotFoundException, UserNotFoundException {
         boolean productPresent = false;

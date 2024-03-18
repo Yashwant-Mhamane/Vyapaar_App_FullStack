@@ -74,6 +74,15 @@ export class VyapaarServiceService {
     return this.hs.get<PRODUCT[]>(`http://localhost:8083/vyapaar/user/getProductByExpiryDate/${expiryDate}`, requestOption);
   }
 
+  public getProductCategoryList():Observable<[]>{
+    let httpHeaders=new HttpHeaders({
+      'Content-Type':'application/json',
+      Authorization :'Bearer '+localStorage.getItem('tokenGenerated')
+    });
+    let requestOption= {headers:httpHeaders}
+    return this.hs.get<[]>("http://localhost:8083/vyapaar/user/getProductCategoryList",requestOption);
+  }
+
   public getProductByLocation(storageLocation:string):Observable<PRODUCT[]>
   {
 

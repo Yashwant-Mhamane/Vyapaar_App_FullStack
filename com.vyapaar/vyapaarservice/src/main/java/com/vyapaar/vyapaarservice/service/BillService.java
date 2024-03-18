@@ -22,6 +22,8 @@ public interface BillService {
     List<Product> getProductByBatchNo(String emailId, String batchNo) throws ProductNotFoundException, UserNotFoundException;
     List<Product> getProductByTax(String emailId, double tax) throws ProductNotFoundException, UserNotFoundException;
     //User deleteAllProduct(String emailId) throws ProductNotFoundException, UserNotFoundException;
+
+    List<String> getProductCategoryList(String emailId) throws UserNotFoundException, ProductNotFoundException;
     User deleteAllProduct(String emailId) throws ProductNotFoundException, UserNotFoundException;
     User deleteProductById(String emailId, String productId) throws ProductNotFoundException, UserNotFoundException;
     User deleteProductByExpiryDate(String emailId, String expiryDate) throws ProductNotFoundException, UserNotFoundException;

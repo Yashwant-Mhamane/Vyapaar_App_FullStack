@@ -42,6 +42,7 @@ userdetails: USER = {
   otp:'',
   billList:[],
   productList:[],
+  productCategeoryList:[]
 };
 
 // getUserName() {
