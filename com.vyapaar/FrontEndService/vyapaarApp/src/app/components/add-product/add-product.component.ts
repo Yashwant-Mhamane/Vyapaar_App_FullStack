@@ -100,9 +100,9 @@ export class AddProductComponent implements OnInit {
     this.ms.addProduct(this.productForm.value).subscribe(
       (data) => {
         console.log(data);
-        this.router1.navigateByUrl('header');
+        this.router1.navigateByUrl('viewproduct');
         alert('Product added successfully');
-        location.reload();
+
       },
       (error) => {
         alert('This Product already exists');
