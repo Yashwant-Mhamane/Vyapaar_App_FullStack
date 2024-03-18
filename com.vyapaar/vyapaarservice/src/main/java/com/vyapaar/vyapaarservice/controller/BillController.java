@@ -80,6 +80,18 @@ public class BillController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+    @PostMapping("/user/addProductCategory")
+    public ResponseEntity<?> addProductCategory(@RequestBody String productCategory, HttpServletRequest httpServletRequest) {
+        String emailId = httpServletRequest.getAttribute("emailId").toString();
+        try {
+            List<String> productCategoryList = billService.addProductCategorytoList(emailId, productCategory).getProductCategoryList();
+            return new ResponseEntity<>(productCategoryList, HttpStatus.OK);
+        } catch (UserNotFoundException userNotFound) {
+            return new ResponseEntity<>("User Not Found", HttpStatus.NOT_FOUND);
+        } catch (ProductCategoryAlreadyExistsException productCategoryAlreadyExistsException) {
+            return new ResponseEntity<>(productCategoryAlreadyExistsException.getMessage(), HttpStatus.CONFLICT);
+        }
+    }
     @GetMapping("/user/getproductbystatus/{status}")
     public ResponseEntity<?> getProductByStatus(HttpServletRequest httpServletRequest, @PathVariable boolean status) {
 
