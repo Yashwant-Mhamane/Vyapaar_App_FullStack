@@ -22,7 +22,7 @@ public interface BillService {
     List<Product> getProductByBatchNo(String emailId, String batchNo) throws ProductNotFoundException, UserNotFoundException;
     List<Product> getProductByTax(String emailId, double tax) throws ProductNotFoundException, UserNotFoundException;
     //User deleteAllProduct(String emailId) throws ProductNotFoundException, UserNotFoundException;
-
+   User addProductCategorytoList(String emailId,String productCategory) throws UserNotFoundException,ProductCategoryAlreadyExistsException;
     List<String> getProductCategoryList(String emailId) throws UserNotFoundException, ProductNotFoundException;
     User deleteAllProduct(String emailId) throws ProductNotFoundException, UserNotFoundException;
     User deleteProductById(String emailId, String productId) throws ProductNotFoundException, UserNotFoundException;
