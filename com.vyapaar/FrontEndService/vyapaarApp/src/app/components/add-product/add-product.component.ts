@@ -4,6 +4,7 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { Router } from '@angular/router';
+import { NewCategoryComponent } from 'src/app/new-category/new-category.component';
 import { VyapaarServiceService } from 'src/app/service/vyapaar-service.service';
 import { USER } from 'src/model/user';
 
@@ -90,7 +91,7 @@ export class AddProductComponent implements OnInit {
   }
 
   addProductCategory() {
-
+      this.dialog.open(NewCategoryComponent)
   }
 
   getdataValidate(ac: AbstractControl) {

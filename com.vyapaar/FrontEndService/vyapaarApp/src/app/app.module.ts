@@ -38,6 +38,7 @@ import { HomeComponent } from './components/home/home.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HeaderComponent } from './header/header.component';
+import { NewCategoryComponent } from './new-category/new-category.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { HeaderComponent } from './header/header.component';
     SearchBarComponent,
     PageNotFoundComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    NewCategoryComponent
   ],
   imports: [
     BrowserModule,
