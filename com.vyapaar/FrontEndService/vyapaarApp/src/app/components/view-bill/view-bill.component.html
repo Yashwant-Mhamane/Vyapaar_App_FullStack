@@ -14,10 +14,10 @@
           {{ card.customerEmailID }} {{card.customerPhoneNo}}
         </mat-card-content>
         <mat-card-content class="desc">
-         {{card.totalBill}}*{{card.discount}} | {{card.payMode}}
+         {{card.totalBill}} | {{card.payMode}}
         </mat-card-content>
         <div *ngFor="let product of card.purchasedProductList">
-          <p>{{ product.productName }} - Quantity: {{ product.stock}} - Price: {{ product.productPrice }}</p>
+          <p>{{ product.productName }} - Quantity: {{product.purchasedQty}} - Price: {{ product.productPrice }}</p>
           <!-- Add more product details as needed -->
         </div>
   </mat-card>
