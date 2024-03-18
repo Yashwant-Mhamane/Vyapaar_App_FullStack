@@ -45,7 +45,12 @@ mat-panel-title {
   align-items: center;
   justify-content: center;
 }
+.add-your-category{
+font-weight: bold;
+color: blue;
+}
 .add-your-category:hover{
   background-color: "#563178";
-  font-weight: bold;
+  font-weight: bolder;
+color: black;
 }
