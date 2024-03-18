@@ -80,7 +80,7 @@ import { NewCategoryComponent } from './new-category/new-category.component';
     MatDialogModule,
     MatPaginatorModule,
     NgxPaginationModule,
-    MatTableModule
+
 
   ],
   providers: [],
