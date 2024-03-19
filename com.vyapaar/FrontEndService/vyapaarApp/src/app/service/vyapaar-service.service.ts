@@ -135,7 +135,6 @@ export class VyapaarServiceService {
       return this.hs.post<USER>("http://localhost:8083/vyapaar/user/addProductCategory", productCategory,requestOption);
       }
 
-
      public deleteProductById(productId:string){
        let httpHeaders=new HttpHeaders({
          'Content-Type':'application/json',
