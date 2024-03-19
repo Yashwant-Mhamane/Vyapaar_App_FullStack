@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { VyapaarServiceService } from '../service/vyapaar-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-category',
@@ -7,12 +8,23 @@ import { VyapaarServiceService } from '../service/vyapaar-service.service';
   styleUrls: ['./new-category.component.css']
 })
 export class NewCategoryComponent {
-  constructor(private vs : VyapaarServiceService){
+  constructor(private vs : VyapaarServiceService,    private router: Router){
 
   }
-  category:string|undefined;
+  category:string="";
   sumbitCategory(){
     console.log(this.category);
-    console.log();
+    this.vs.addProductCategoryToList(this.category).subscribe(
+      response => {
+        console.log('Response from backend:', response);
+       // this.router.navigateByUrl('addproduct')
+       location.reload();
+      },
+      error => {
+        console.error('Error:', error);
+        // Handle error if needed
+      }
+    );
+
   }
 }

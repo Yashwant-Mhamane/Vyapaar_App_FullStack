@@ -205,6 +205,29 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
+    public User addProductCategorytoList(String emailId, String productCategory) throws UserNotFoundException, ProductCategoryAlreadyExistsException {
+        User user;
+        if (billRepository.findById(emailId).isPresent()) {
+            user = billRepository.findById(emailId).get();
+            List<String> productCategoryList = user.getProductCategoryList();
+            if (productCategoryList == null) {
+                productCategoryList = Collections.singletonList(productCategory);
+            } else {
+                if (productCategoryList.contains(productCategory)) {
+                    throw new ProductCategoryAlreadyExistsException("Product Category Already Exist");
+                } else {
+
+                    productCategoryList.add(productCategory);
+                }
+            }
+            user.setProductCategoryList(productCategoryList);
+        } else {
+            throw new UserNotFoundException("User Not Found Exception");
+        }
+        return billRepository.save(user);
+    }
+
+    @Override
     public List<String> getProductCategoryList(String emailId) throws UserNotFoundException {
         Optional<User> user = billRepository.findById(emailId);
         if (user.isPresent()) {

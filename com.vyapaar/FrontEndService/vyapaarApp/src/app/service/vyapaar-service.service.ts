@@ -126,15 +126,15 @@ export class VyapaarServiceService {
     return this.hs.post<PRODUCT>("http://localhost:8083/vyapaar/user/addproduct", product,requestOption);
     }
 
+    addProductCategoryToList(productCategory: String): Observable<USER> {
+      let httpHeaders=new HttpHeaders({
+        'Content-Type':'application/json',
+        Authorization :'Bearer '+localStorage.getItem('tokenGenerated')
+      });
+      let requestOption= {headers:httpHeaders}
+      return this.hs.post<USER>("http://localhost:8083/vyapaar/user/addProductCategory", productCategory,requestOption);
+      }
 
-    //  public deleteAllTask(){
-    //   let httpHeaders=new HttpHeaders({
-    //     'Content-Type':'application/json',
-    //     Authorization :'Bearer '+localStorage.getItem('tokenGenerated')
-    //   });
-    //   let requestOption= {headers:httpHeaders}
-    //   return this.hs.delete("http://localhost:8086/usertodo/user/deletealltask", requestOption);
-    //  }
 
      public deleteProductById(productId:string){
        let httpHeaders=new HttpHeaders({
@@ -228,35 +228,6 @@ export class VyapaarServiceService {
         let requestOption= {headers:httpHeaders}
         return this.hs.put("http://localhost:8083/vyapaar/user/updateProductStorageLocation",product, requestOption);
        }
-
-
-      // public getAllArchiveTask(isArchieved:boolean)
-      // {        let httpHeaders=new HttpHeaders({
-      //    'Content-Type':'application/json',
-      //    Authorization :'Bearer '+localStorage.getItem('tokenGenerated')
-      //  });
-      //  let requestOption= {headers:httpHeaders}
-      //  return this.hs.get<TASK[]>("http://localhost:8083/vyapaar/user/getalltaskarchivebystatus/"+isArchieved, requestOption);
-      // }
-      // public updateTaskAsArchiveTask(task:TASK){
-      //  let httpHeaders=new HttpHeaders({
-      //    'Content-Type':'application/json',
-      //    Authorization :'Bearer '+localStorage.getItem('tokenGenerated')
-      //  });
-      //  let requestOption= {headers:httpHeaders}
-      //  return this.hs.put("http://localhost:8086/usertodo/user/updatetaskarhivestatus",task, requestOption);
-      // }
-
-  //    public getAllTaskNotification():Observable<any>
-  // {
-
-  //   let httpHeaders=new HttpHeaders({
-  //     'Content-Type':'application/json',
-  //     Authorization :'Bearer '+localStorage.getItem('tokenGenerated')
-  //   });
-  //   let requestOption= {headers:httpHeaders}
-  //   return this.hs.get<any>("http://localhost:8086/usernotification/user/getallnotification", requestOption);
-  // }
 
   createBill(bill: BILL): Observable<BILL> {
     let httpHeaders=new HttpHeaders({
