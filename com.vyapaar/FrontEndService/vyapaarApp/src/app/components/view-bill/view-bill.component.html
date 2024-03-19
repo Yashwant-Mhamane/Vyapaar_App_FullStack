@@ -1,45 +1,63 @@
-
-<div class="div">
-  <mat-card class="example-card" *ngFor="
-      let card of allBill.reverse()">
-    <mat-card-header class="head">
-      <mat-card-title class="text"> {{ card.billId }}</mat-card-title>
-      <mat-card-subtitle class="text text1">
-        Date :- {{ card.billDate }} | Name :- {{ card.customerName }}</mat-card-subtitle>
+<div class="main-div" *ngFor="let bills of shopData?.billList">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{shopData?.shopName}}</mat-card-title>
+        <mat-card-subtitle>{{bills.customerName}}</mat-card-subtitle>
+        <mat-card-subtitle>{{bills.billId}}</mat-card-subtitle>
+        <mat-card-subtitle>{{bills.customerPhoneNo}}</mat-card-subtitle>
+        <mat-card-subtitle>{{bills.customerEmailID}}</mat-card-subtitle>
+        <mat-card-subtitle>{{bills.customerAddress}}</mat-card-subtitle>
+        <img src={{shopData?.shopLogo}} alt="shop-logo">
+      </mat-card-title-group>
     </mat-card-header>
-        <mat-card-content class="desc">
-         Address : {{ card.customerAddress }}
-         CustomerMail: {{ card.customerEmailID }} {{card.customerPhoneNo}}
-        </mat-card-content>
-        <mat-card-content class="desc">
-        Total Bill : {{card.totalBill}} | Payment Mode : {{card.payMode}}
-        </mat-card-content>
-        <table>
-          <thead>
-            <tr class="heading">
-              <th>Product Name</th>
-              <th>Quantity</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let product of card.purchasedProductList">
-              <td>{{ product.productName }}</td>
-              <td>{{ product.purchasedQty }}</td>
-              <td>{{ product.productPrice }}</td>
-            </tr>
-          </tbody>
-          <div>
-          <tr>
-          <td> Discount : {{card.discount}} % </td>
-        </tr>
-          <tr>
-          <td> Total Bill : {{card.totalBill}} </td>
-          </tr>
+    <mat-card-content>
+      <div class="bill-table">
+        <div>
+          sr
         </div>
-        </table>
+        <div>
+          <h3>Product Name</h3>
+        </div>
+        <div>
+          <h3>QTY</h3>
+        </div>
+        <div>
+          <h3>Unit price</h3>
+        </div>
+        <div>
+          <h3>Amount</h3>
+        </div>
+      </div>
+      <div class="bill-table" *ngFor="let productPurchased of bills.purchasedProductList">
+        <div>
+          sr
+        </div>
+        <div>
+          {{productPurchased.productName}}
+        </div>
+        <div>
+          {{productPurchased.purchasedQty}}
+        </div>
+        <div>
+          {{productPurchased.productPrice}}
+        </div>
+        <div>
+          Qty * Price
+        </div>
+      </div>
+      <div class="bill-total">
+        <h4>Total Amount : {{bills.totalBill}}</h4>
+      </div>
+      <div class="bill-total">
+        <h4>Discount : {{bills.discount}}</h4>
+      </div>
+    </mat-card-content>
+
   </mat-card>
+
 </div>
+
 <!-- <div  class="size1" id="pg">
   <div style="width: 400px">
     <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onCardDataChange($event)">
@@ -54,4 +72,3 @@
     </select>
   </div>
 </div> -->
-

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserServiceService } from 'src/app/service/user-service.service';
 import { VyapaarServiceService } from 'src/app/service/vyapaar-service.service';
 import { BILL } from 'src/model/bill';
+import { USER } from 'src/model/user';
 
 
 @Component({
@@ -14,17 +15,19 @@ export class ViewBillComponent implements OnInit {
 
   ngOnInit(): void {
 
-this.getAllBill();
-
+    this.getAllBill();
+    this.getShowName();
   }
 
   page: number = 1;
   count: number = 0;
   cardSize: number = 6;
-  cardSizes: any = [6,3,9];
+  cardSizes: any = [6, 3, 9];
 
   @Input()
   allBill: BILL[] = [];
+
+  shopData: USER | undefined;
 
   constructor(private h: VyapaarServiceService, private service: UserServiceService, private router: Router) { }
 
@@ -49,6 +52,14 @@ this.getAllBill();
       }
     });
     console.log(this.allBill);
+  }
+
+  getShowName() {
+    this.h.getShopName().subscribe((data) => {
+      this.shopData = data
+      console.log(this.shopData);
+      console.log(this.shopData.productList);
+    })
   }
 
 

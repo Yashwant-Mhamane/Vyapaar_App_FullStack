@@ -60,9 +60,8 @@
           <mat-form-field>
             <mat-label>Product Category</mat-label>
             <mat-select formControlName="productCategory" name="productCategory" (change)="productCat()">
-              <mat-option class="add-your-category" (click)="addProductCategory()">Add New Category 📝</mat-option>
               <mat-option *ngFor="let productCategeory of productCategeoryList" [value]="productCategeory">{{productCategeory}}</mat-option>
-
+              <mat-option class="add-your-category" (click)="addProductCategory()">Add Your Category</mat-option>
 
             </mat-select>
           </mat-form-field>
