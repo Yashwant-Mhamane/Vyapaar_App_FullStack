@@ -127,14 +127,14 @@ export class VyapaarServiceService {
   //   return this.hs.delete("http://localhost:8086/usertodo/user/deletealltask", requestOption);
   //  }
 
-  public deleteProductById(productId: string) {
-    let httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('tokenGenerated')
-    });
-    let requestOption = { headers: httpHeaders }
-    return this.hs.delete(`http://localhost:8083/vyapaar/user/deleteproductbyid/${productId}`, requestOption);
-  }
+     public deleteProductById(productId:string){
+       let httpHeaders=new HttpHeaders({
+         'Content-Type':'application/json',
+         Authorization :'Bearer '+localStorage.getItem('tokenGenerated')
+       });
+       let requestOption= {headers:httpHeaders}
+       return this.hs.delete(`http://localhost:8083/vyapaar/user/deleteproductbyid/${productId}`, requestOption);
+      }
 
   public deleteProductByExpiryDate(expiryDate: string) {
     let httpHeaders = new HttpHeaders({
