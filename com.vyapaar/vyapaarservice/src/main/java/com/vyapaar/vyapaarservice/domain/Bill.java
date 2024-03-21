@@ -4,9 +4,8 @@ package com.vyapaar.vyapaarservice.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.MongoId;
-
 import java.util.List;
-import java.util.Objects;
+
 @AllArgsConstructor
 @Data
 public class Bill {
@@ -18,6 +17,7 @@ public class Bill {
     private String customerAddress;
     private String billDate;
     private double totalBill;
+    private double totalBillBeforeDiscount;
     private String payMode;
     private double discount;
     List<Product> purchasedProductList;
