@@ -46,22 +46,12 @@
             </mat-error>
           </mat-form-field>
 
-          <!-- <mat-form-field class="col" appearance="fill">
-            <mat-label>Product Category</mat-label>
-            <input type="text" formControlName="productCategory" name="productCategory" matInput />
-            <mat-error *ngIf="productForm.controls['productCategory'].hasError('required')">
-              <strong> productCategory is required</strong>
-            </mat-error>
-            <mat-error *ngIf="productForm.controls['productCategory'].hasError('minlength')">
-              <strong> productCategory should be min 3 number</strong>
-            </mat-error>
-          </mat-form-field> -->
-
           <mat-form-field>
             <mat-label>Product Category</mat-label>
             <mat-select formControlName="productCategory" name="productCategory" (change)="productCat()">
+              <mat-option class="add-your-category" (click)="addProductCategory()">Add Your Category 📝</mat-option>
               <mat-option *ngFor="let productCategeory of productCategeoryList" [value]="productCategeory">{{productCategeory}}</mat-option>
-              <mat-option class="add-your-category" (click)="addProductCategory()">Add Your Category</mat-option>
+
 
             </mat-select>
           </mat-form-field>
@@ -164,9 +154,6 @@
               Product</button>
           </div>
         </div>
-        <!-- <div class="row">
-          <button >Add Task</button>
-        </div> -->
       </form>
 
     </div>
