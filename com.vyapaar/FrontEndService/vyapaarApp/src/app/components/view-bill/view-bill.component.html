@@ -43,14 +43,17 @@
           {{productPurchased.productPrice}}
         </div>
         <div>
-          Qty * Price
+        {{productPurchased.productWisePurchasedAmount}}
         </div>
       </div>
       <div class="bill-total">
-        <h4>Total Amount : {{bills.totalBill}}</h4>
+        <h4>Total Amount Before Dicount : {{bills.totalBillBeforeDiscount}}</h4>
       </div>
       <div class="bill-total">
         <h4>Discount : {{bills.discount}}</h4>
+      </div>
+      <div class="bill-total">
+        <h4>Total Amount : {{bills.totalBill}}</h4>
       </div>
     </mat-card-content>
 
