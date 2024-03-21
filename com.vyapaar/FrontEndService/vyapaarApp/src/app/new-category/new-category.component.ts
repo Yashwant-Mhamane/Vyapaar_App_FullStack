@@ -13,18 +13,14 @@ export class NewCategoryComponent {
   }
   category:string="";
   sumbitCategory(){
-    console.log(this.category);
     this.vs.addProductCategoryToList(this.category).subscribe(
       response => {
-        console.log('Response from backend:', response);
        // this.router.navigateByUrl('addproduct')
        location.reload();
       },
       error => {
         console.error('Error:', error);
-        // Handle error if needed
       }
     );
-
   }
 }
