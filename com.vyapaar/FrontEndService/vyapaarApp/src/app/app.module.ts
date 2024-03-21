@@ -78,10 +78,7 @@ import { NewCategoryComponent } from './new-category/new-category.component';
     MatNativeDateModule,
     MatMenuModule,FormsModule,MatSnackBarModule,MatTooltipModule,MatBadgeModule,MatPaginatorModule,
     MatDialogModule,
-    MatPaginatorModule,
     NgxPaginationModule,
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]
