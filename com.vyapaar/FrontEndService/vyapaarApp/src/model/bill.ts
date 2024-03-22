@@ -9,6 +9,7 @@ export type BILL =
   customerAddress?:string;
   billDate?:string;
   totalBill?:number;
+  totalBillBeforeDiscount?:number;
   discount?:boolean;
   payMode?:string;
   purchasedProductList?:PRODUCT[];

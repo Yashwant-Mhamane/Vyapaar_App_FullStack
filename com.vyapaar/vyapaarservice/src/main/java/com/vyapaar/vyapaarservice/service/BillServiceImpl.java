@@ -10,11 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
 public class BillServiceImpl implements BillService {
-
     private final BillRepository billRepository;
     private final Proxy userproxy;
     @Autowired
@@ -22,7 +23,6 @@ public class BillServiceImpl implements BillService {
         this.billRepository = billRepository;
         this.userproxy = userproxy;
     }
-
 
     @Override
     public User registerUser(User user) throws UserAlreadyExistException {
@@ -71,12 +71,6 @@ public class BillServiceImpl implements BillService {
             if (user.getProductList() == null) {
                 throw new ProductNotFoundException("Product Not Found.");
             } else {
-                //                JSONObject jsonObject = new JSONObject();
-//                jsonObject.put("notification", productList);
-//                jsonObject.put("emailId",emailId);
-//                TaskDTO taskDto = new TaskDTO();
-//                taskDto.setJsonObject(jsonObject);
-//                rabbitTemplate.convertAndSend(directExchange.getName(),"task-routing",taskDto);
                 return user.getProductList();
             }
         } else {
@@ -245,7 +239,7 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public User deleteAllProduct(String emailId) throws ProductNotFoundException, UserNotFoundException {
-        boolean productPresent = false;
+        boolean productPresent;
         if (billRepository.findById(emailId).isEmpty()) {
             throw new UserNotFoundException("User Not found");
         }
@@ -261,7 +255,7 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public User deleteProductById(String emailId, String productId) throws ProductNotFoundException, UserNotFoundException {
-        boolean productPresent = false;
+        boolean productPresent ;
         if (billRepository.findById(emailId).isEmpty()) {
             throw new UserNotFoundException("User Not found");
         }
@@ -277,7 +271,7 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public User deleteProductByExpiryDate(String emailId, String expiryDate) throws ProductNotFoundException, UserNotFoundException {
-        boolean productPresent = false;
+        boolean productPresent;
         if (billRepository.findById(emailId).isEmpty()) {
             throw new UserNotFoundException("User Not found");
         }
@@ -293,7 +287,7 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public User deleteProductByBatchNo(String emailId, String batchNo) throws ProductNotFoundException, UserNotFoundException {
-        boolean productPresent = false;
+        boolean productPresent;
         if (billRepository.findById(emailId).isEmpty()) {
             throw new UserNotFoundException("User Not found");
         }
@@ -506,22 +500,31 @@ public class BillServiceImpl implements BillService {
             throw new UserNotFoundException("User Not Found.");
         }
     }
-
+    public static String generateBillId() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMddHHmmss");
+        String formattedDateTime = now.format(formatter);
+        return formattedDateTime;
+    }
     @Override
     public User createBill(String emailId, Bill bill) throws BillAlreadyExistException, UserNotFoundException {
         User user;
-        String billId = UUID.randomUUID().toString();
-        bill.setBillId(billId);
         bill.setBillDate(LocalDate.now().toString());
         if (billRepository.findById(emailId).isPresent()) {
             user = billRepository.findById(emailId).get();
             List<Bill> billList = user.getBillList();
+            final Character shopNameForID=  user.getShopName().charAt(0);
+            bill.setBillId(shopNameForID+generateBillId());
             if (billList == null) {
                 double total = 0.0;
+                double amount;
                 List<Product> bill1PurchasedProductList = bill.getPurchasedProductList();
                 for (Product product:bill1PurchasedProductList) {
+                    amount = product.getPurchasedQty()* product.getProductPrice();
                     total += product.getProductPrice()* product.getPurchasedQty();
+                    product.setProductWisePurchasedAmount(amount);
                 }
+                bill.setTotalBillBeforeDiscount(total);
                 bill.setTotalBill(total-(total*bill.getDiscount()/100));
                 billList = Collections.singletonList(bill);
             } else {
@@ -529,11 +532,15 @@ public class BillServiceImpl implements BillService {
                     throw new BillAlreadyExistException("Bill Already Exist");
                 } else {
                     double total = 0.0;
+                    double amount;
                     List<Product> bill1PurchasedProductList = bill.getPurchasedProductList();
                     for (Product product:bill1PurchasedProductList) {
+                        amount = product.getPurchasedQty()* product.getProductPrice();
                         total += product.getProductPrice()* product.getPurchasedQty();
+                        product.setProductWisePurchasedAmount(amount);
                     }
                     bill.setTotalBill(total-(total*bill.getDiscount()/100));
+                    bill.setTotalBillBeforeDiscount(total);
                     billList.add(bill);
                 }
             }
@@ -551,8 +558,7 @@ public class BillServiceImpl implements BillService {
             if (user.getBillList() == null) {
                 throw new BillNotFoundException("Bill Not Found.");
             } else {
-                List<Bill> billList = user.getBillList();
-                return billList;
+                return user.getBillList();
             }
         } else {
             throw new UserNotFoundException("User Not Found.");
@@ -608,7 +614,7 @@ public class BillServiceImpl implements BillService {
     }
     @Override
     public User deleteAllBill(String emailId) throws BillNotFoundException, UserNotFoundException {
-        boolean billPresent = false;
+        boolean billPresent;
         if (billRepository.findById(emailId).isEmpty()) {
             throw new UserNotFoundException("User Not found");
         }
