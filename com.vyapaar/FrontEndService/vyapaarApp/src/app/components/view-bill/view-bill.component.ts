@@ -51,14 +51,13 @@ export class ViewBillComponent implements OnInit {
         this.showDeleteButton1 = false;
       }
     });
-    console.log(this.allBill);
   }
+
 
   getShowName() {
     this.h.getShopName().subscribe((data) => {
       this.shopData = data
       console.log(this.shopData);
-      console.log(this.shopData.productList);
     })
   }
 

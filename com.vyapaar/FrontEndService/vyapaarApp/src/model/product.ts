@@ -3,7 +3,7 @@ export type PRODUCT =
 name: any;
   productId:string;
   productName?:string;
-  productPrice?:number;
+  productPrice:number;
   purchasedQty:number;
   stock?:number;
   productCategory?:string;
